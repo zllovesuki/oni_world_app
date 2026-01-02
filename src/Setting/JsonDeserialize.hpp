@@ -12,10 +12,14 @@
 #include "ComposableDictionary.hpp"
 
 template<typename T>
+inline constexpr bool kAlwaysFalse = false;
+
+template<typename T>
 struct Deserializer {
     static bool deserialize(const Json::Value & /*json*/, T & /*obj*/)
     {
-        static_assert(false, "unsupport");
+        static_assert(kAlwaysFalse<T>, "unsupport");
+        return false;
     }
 };
 

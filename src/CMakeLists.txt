@@ -41,6 +41,7 @@ add_executable(oniWorldApp
     "Setting/SettingsCache.hpp"
     "Setting/WorldGenClasses.cpp"
     "Setting/SettingsCache.cpp"
+    "SeedSearchMain.cpp"
     "Utils/ConvexHull/Constants.hpp"
     "Utils/ConvexHull/Algorithm.hpp"
     "Utils/ConvexHull/Algorithm.cpp"

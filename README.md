@@ -29,8 +29,19 @@ cmake --build out/build/x86-release
 ./out/build/x86-release/src/oniWorldApp
 ```
 
+## Linux (native) + seed search
+This repo's `x86-*` presets are Windows-only. On Linux, configure a native build directory:
+```sh
+cmake -S . -B out/build/linux-release -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build out/build/linux-release -j
+```
+
+Seed search (Ceres base game; default mix matches the repo UI, override with `--mix`):
+```sh
+./out/build/linux-release/src/oniWorldApp search --start 1 --end 2147483647 --threads 8
+```
+
 ## License
 This project is licensed under the [MIT License](./LICENSE).  
 Third party libraries and their [licenses](./3rdparty/README.md).  
 And [Klei](https://www.klei.com), [Oxygen Not Included](https://www.klei.com/games/oxygen-not-included)
-

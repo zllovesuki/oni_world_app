@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -flto")
 endif()
 
 if("$ENV{EMSDK_PYTHON}" STREQUAL "")
-    find_program(PYTHON_CMD "python" REQUIRED)
+    find_program(PYTHON_CMD NAMES python3 python REQUIRED)
 else()
     set(PYTHON_CMD "$ENV{EMSDK_PYTHON}")
 endif()

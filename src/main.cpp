@@ -61,7 +61,7 @@ void WriteToBinary(const std::vector<Site> &sites)
             }
         }
     }
-    jsSetGeyserInfo(index++, (uint32_t)data.size(), (uint32_t)data.data());
+    jsSetGeyserInfo(index++, (uint32_t)data.size(), (size_t)data.data());
 }
 
 class App
@@ -321,13 +321,35 @@ extern "C" bool EMSCRIPTEN_KEEPALIVE app_generate(int type, int seed, int mix)
 
 #ifndef EMSCRIPTEN
 
-int main()
+int SeedSearchMain(int argc, char **argv);
+
+int main(int argc, char **argv)
 {
+    if (argc >= 2) {
+        std::string_view cmd = argv[1];
+        if (cmd == "search") {
+            return SeedSearchMain(argc - 1, argv + 1);
+        }
+        if (cmd == "-h" || cmd == "--help") {
+            std::cerr
+                << "Usage:\n"
+                << "  oniWorldApp                 (interactive generate)\n"
+                << "  oniWorldApp search [opts]   (seed search)\n";
+            return 0;
+        }
+        std::cerr << "Unknown command: " << cmd << "\n";
+        std::cerr << "Try: oniWorldApp --help\n";
+        return 2;
+    }
+
     int type, seed, mixing;
     app_init(time(nullptr));
     while (true) {
         std::cout << "input type, seed, mixing: ";
         std::cin >> type >> seed >> mixing;
+        if (!std::cin.good()) {
+            break;
+        }
         if (seed == 0) {
             break;
         }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <climits>
+
 #include "DefaultSettings.hpp"
 
 struct Feature {
